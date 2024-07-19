@@ -10,6 +10,7 @@ class PostsService {
         logger.log(response.data)
         const posts = response.data.posts.map(postPOJO => new Post(postPOJO))
         AppState.posts = posts
+        AppState.profile = null
     }
     async getPostsByProfileId(profileId) {
         AppState.profilePosts = []

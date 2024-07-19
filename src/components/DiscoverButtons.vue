@@ -40,20 +40,20 @@ async function profileChangePage(url) {
 
 
 <template>
-    <!-- <section v-if="profileId" class="row justify-content-between my-2">
+    <section v-if="!profile" class="row justify-content-between my-2">
         <button :disabled="currentPage == 1" class="col-3 btn btn-primary" @click="changePage(currentPage - 1)"><i
                 class="mdi mdi-arrow-left"></i> Previous</button>
         <div class="col-3 text-center fw-bold">{{ currentPage }} of {{ totalPages }}</div>
         <button :disabled="currentPage == totalPages" @click="changePage(currentPage + 1)"
             class="col-3 btn btn-primary">Next<i class="mdi mdi-arrow-right"></i></button>
-    </section> -->
-    <section class="row">
+    </section>
+    <section v-else class="row ">
         <button :disabled="currentPage == 1" class="col-3 btn btn-primary"
             @click="profileChangePage(`api/profiles/${profile.id}/posts?page=${currentPage - 1}`)"><i
                 class="mdi mdi-arrow-left"></i> Previous</button>
         <div class="col-3 text-center fw-bold">{{ currentPage }} of {{ totalPages }}</div>
         <button :disabled="currentPage == totalPages"
-            @click="profileChangePage(`api/profiles/63922fd4274d85e20428e306/posts?page=2`)"
+            @click="profileChangePage(`api/profiles/${profile.id}/posts?page=${currentPage + 1}`)"
             class="col-3 btn btn-primary">Next<i class="mdi mdi-arrow-right"></i></button>
     </section>
 </template>
