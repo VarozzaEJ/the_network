@@ -28,9 +28,9 @@ async function changePage(pageNumber) {
     }
 }
 
-async function profileChangePage(profileId, pageNumber) {
+async function profileChangePage(url) {
     try {
-        await postsService.profileChangePage(pageNumber)
+        await postsService.profileChangePage(url)
     }
     catch (error) {
         Pop.error(error);
@@ -38,23 +38,23 @@ async function profileChangePage(profileId, pageNumber) {
 }
 </script>
 
-<!-- v-if="!profileId" -->
+
 <template>
-    <section class="row justify-content-between my-2">
+    <!-- <section v-if="profileId" class="row justify-content-between my-2">
         <button :disabled="currentPage == 1" class="col-3 btn btn-primary" @click="changePage(currentPage - 1)"><i
                 class="mdi mdi-arrow-left"></i> Previous</button>
         <div class="col-3 text-center fw-bold">{{ currentPage }} of {{ totalPages }}</div>
         <button :disabled="currentPage == totalPages" @click="changePage(currentPage + 1)"
             class="col-3 btn btn-primary">Next<i class="mdi mdi-arrow-right"></i></button>
-    </section>
-    <!-- <section v-else class="row">
+    </section> -->
+    <section class="row">
         <button :disabled="currentPage == 1" class="col-3 btn btn-primary" @click="profileChangePage(``)"><i
                 class="mdi mdi-arrow-left"></i> Previous</button>
         <div class="col-3 text-center fw-bold">{{ currentPage }} of {{ totalPages }}</div>
         <button :disabled="currentPage == totalPages"
             @click="profileChangePage(`api/profiles/63922fd4274d85e20428e306/posts?page=2`)"
             class="col-3 btn btn-primary">Next<i class="mdi mdi-arrow-right"></i></button>
-    </section> -->
+    </section>
 </template>
 
 

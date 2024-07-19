@@ -27,9 +27,11 @@ class PostsService {
         AppState.currentPage = response.data.page
         AppState.totalPages = response.data.pages
     }
-    async profileChangePage(profileId, pageNumber) {
-        const response = await api.get(`api/profiles/${profileId}/posts?page=${pageNumber}`)
+    async profileChangePage(url) {
+        const response = await api.get(`${url}`)
         logger.log(response.data)
+        const posts = response.data.posts.map(postPOJO => new Post(postPOJO))
+        AppState.profilePosts = posts
     }
 
 }
