@@ -32,6 +32,8 @@ class PostsService {
         logger.log(response.data)
         const posts = response.data.posts.map(postPOJO => new Post(postPOJO))
         AppState.profilePosts = posts
+        AppState.currentPage = response.data.page
+        AppState.totalPages = response.data.pages
     }
 
 }

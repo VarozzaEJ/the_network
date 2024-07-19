@@ -48,7 +48,8 @@ async function profileChangePage(url) {
             class="col-3 btn btn-primary">Next<i class="mdi mdi-arrow-right"></i></button>
     </section> -->
     <section class="row">
-        <button :disabled="currentPage == 1" class="col-3 btn btn-primary" @click="profileChangePage(``)"><i
+        <button :disabled="currentPage == 1" class="col-3 btn btn-primary"
+            @click="profileChangePage(`api/profiles/${profile.id}/posts?page=${currentPage - 1}`)"><i
                 class="mdi mdi-arrow-left"></i> Previous</button>
         <div class="col-3 text-center fw-bold">{{ currentPage }} of {{ totalPages }}</div>
         <button :disabled="currentPage == totalPages"
