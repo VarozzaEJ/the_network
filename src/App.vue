@@ -1,8 +1,26 @@
 <script setup>
+import { computed, onMounted } from 'vue';
 import { AppState } from './AppState'
+import MonetizedPicture from './components/MonetizedPicture.vue';
 import Navbar from './components/Navbar.vue'
+import { monetizedPicturesService } from './services/MonetizedPicturesService.js';
+import Pop from './utils/Pop.js';
+import DiscoverButtons from './components/DiscoverButtons.vue';
 
+const ads = computed(() => AppState.monetizedPictures)
 
+onMounted(() => {
+  getMonetizedPictures()
+})
+
+async function getMonetizedPictures() {
+  try {
+    await monetizedPicturesService.getMonetizedPictures()
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+}
 </script>
 
 <template>
@@ -10,10 +28,16 @@ import Navbar from './components/Navbar.vue'
     <Navbar />
   </header>
   <main>
-    <router-view />
+    <div class="d-flex">
+      <router-view />
+      <div>
+        <MonetizedPicture v-for=" ad in ads" :key="ad.id" :ad-prop="ad" />
+      </div>
+    </div>
+
   </main>
   <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
+
   </footer>
 </template>
 

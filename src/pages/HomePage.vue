@@ -1,9 +1,41 @@
 <script setup>
+import { AppState } from "../AppState.js";
+import { postsService } from "../services/PostsService.js";
+import Pop from "../utils/Pop";
+import { computed, onMounted } from "vue";
+
+
+const posts = computed(() => AppState.posts)
+
+onMounted(() => {
+  getAllPosts()
+})
+
+async function getAllPosts() {
+  try {
+    await postsService.getAllPosts()
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+}
+
 
 </script>
 
 <template>
-  <h1>The Network</h1>
+  <div class="container-fluid ">
+    <div class="row">
+      <div v-for="post in posts" :key="post.id" class="col-12 ">
+        <PostCard :postProp='post' />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <DiscoverButtons />
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
