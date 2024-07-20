@@ -27,4 +27,6 @@ export const AppState = reactive({
   currentPage: 1,
 
   totalPages: null,
+
+  searchingFor: null,
 })

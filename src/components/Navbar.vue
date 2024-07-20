@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
 import { AppState } from '../AppState.js';
+import SearchBar from './SearchBar.vue';
 
 const theme = ref(loadState('theme') || 'light')
 const account = computed(() => AppState.account)
@@ -39,6 +40,9 @@ function toggleTheme() {
           <button v-if="account" title="Create A Post"
             class="btn text-success fs-1 lighten-30 selectable text-uppercase" data-bs-toggle="modal"
             data-bs-target="#exampleModal"><i class="mdi mdi-plus"></i></button>
+        </li>
+        <li class="d-flex align-items-center">
+          <SearchBar />
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
