@@ -4,6 +4,10 @@ import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class AccountService {
+  async updateAccount(accountData) {
+    const response = await api.put('/account', accountData)
+    logger.log('UPDATING YOUR ACCOUNT', response.data)
+  }
   async getAccount() {
     try {
       const res = await api.get('/account')

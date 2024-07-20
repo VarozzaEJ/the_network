@@ -8,6 +8,7 @@ import { profilesService } from '../services/ProfilesService.js';
 import PostCard from '../components/PostCard.vue';
 import { postsService } from '../services/PostsService.js';
 import ProfileDiscoverButtons from '../components/ProfileDiscoverButtons.vue';
+import AccountForm from '../components/AccountForm.vue';
 
 
 const route = useRoute()
@@ -45,6 +46,9 @@ async function getPostByProfileId(profileId) {
 
 <template>
     <div v-if="profile" class="container">
+        <div>
+            <AccountForm />
+        </div>
         <div class="row row-color mt-3" :style="`background-image: url(${profile.coverImg})`">
             <div class="col-6 px-0 d-flex">
                 <img :src="profile.picture" :alt="profile.name" class="img-fluid">
@@ -72,6 +76,7 @@ async function getPostByProfileId(profileId) {
         <DiscoverButtons />
     </div>
 </template>
+<!-- TODO add route to profile page for logged in user without having to click on the image on a post card -->
 
 
 <style lang="scss" scoped>
