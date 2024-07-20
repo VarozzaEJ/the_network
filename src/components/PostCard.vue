@@ -1,9 +1,33 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 import { Post } from '../models/Post.js';
+import Pop from '../utils/Pop.js';
+import { logger } from '../utils/Logger.js';
+import { postsService } from '../services/PostsService.js';
+import { AppState } from '../AppState.js';
 
 
 const props = defineProps({ postProp: { type: Post, required: true } })
+
+async function likePost(url, postId) {
+    try {
+        await postsService.likePost(url, postId)
+    }
+    catch (error) {
+        Pop.error(error);
+    }
+}
+
+async function deletePost(url, postId) {
+    try {
+        const wantsToDelete = await Pop.confirm("Are You Sure?")
+        if (!wantsToDelete) return
+        await postsService.deletePost(url, postId)
+    }
+    catch (error) {
+        Pop.error(error);
+    }
+}
 
 </script>
 
@@ -33,9 +57,22 @@ const props = defineProps({ postProp: { type: Post, required: true } })
                                 </RouterLink>
                                 <!-- TODO like button is here -->
                             </div>
-                            <h5 class=" d-flex align-items-center justify-content-end"><i
-                                    class="mdi mdi-heart text-end fs-2" role="button" title="Like This Post"></i>{{
-                                        postProp.likeIds.length }}</h5>
+                            <div class="d-flex justify-content-between">
+                                <h5 v-if="postProp.creatorId == AppState.account?.id">
+                                    <button v-on:click="deletePost(`api/posts/${postProp.id}`, postProp.id)"
+                                        class="btn btn-outline-danger"><i class=" text-start fs-2 mdi mdi-delete"></i>
+                                    </button>
+                                </h5>
+                                <h5 v-if="(postProp.creatorId != AppState.account?.id)"
+                                    class=" d-flex align-items-center justify-content-end">
+                                    <button class="btn btn-outline-primary text-end"
+                                        v-on:click="likePost(`api/posts/${postProp.id}/like`, postProp.id)">
+                                        <i class="mdi mdi-heart text-end fs-2" role="button"
+                                            title="Like This Post"></i>{{
+                                                postProp.likeIds.length }}
+                                    </button>
+                                </h5>
+                            </div>
                         </div>
                     </div>
                 </div>

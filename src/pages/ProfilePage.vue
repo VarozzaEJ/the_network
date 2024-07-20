@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
@@ -12,9 +12,10 @@ import ProfileDiscoverButtons from '../components/ProfileDiscoverButtons.vue';
 
 const route = useRoute()
 const profile = computed(() => AppState.profile)
-const posts = computed(() => AppState.profilePosts)
+const profilePosts = computed(() => AppState.profilePosts)
+const posts = computed(() => AppState.posts)
 
-onMounted(() => {
+watchEffect(() => {
     logger.log(route.params)
     const profileId = route.params.profileId
     getProfileById(profileId)
@@ -65,7 +66,7 @@ async function getPostByProfileId(profileId) {
                 <p class="text-center fs-5">{{ profile.bio }}</p>
             </div>
         </div>
-        <div v-for="post in posts" :key="post.id" class="col-12 mt-3">
+        <div v-for="post in profilePosts" :key="post.id" class="col-12 mt-3">
             <PostCard :postProp="post" />
         </div>
         <DiscoverButtons />

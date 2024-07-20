@@ -34,7 +34,7 @@ async function getMonetizedPictures() {
         <MonetizedPicture v-for=" ad in ads" :key="ad.id" :ad-prop="ad" />
       </div>
     </div>
-
+    <PostModal />
   </main>
   <footer class="bg-dark text-light">
 
