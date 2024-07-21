@@ -16,7 +16,7 @@ const props = defineProps({ adProp: { type: MonetizedPicture, required: true } }
 
 
 <template>
-    <img :src="adProp.square" :alt="adProp.title" class="img-fluid ad-card mb-3 ms-5">
+    <img :src="adProp.square" :alt="adProp.title" class="img-fluid ad-card mb-3 ms-5 ">
 </template>
 
 

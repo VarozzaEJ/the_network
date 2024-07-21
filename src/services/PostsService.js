@@ -49,9 +49,12 @@ class PostsService {
         const response = await api.post(url)
         logger.log('liked post', response.data)
         const postIndex = AppState.posts.findIndex((post) => postId == post.id)
+        const profilePageIndex = AppState.profilePosts.findIndex((post) => post.id == postId)
         logger.log(postIndex)
         const post = new Post(response.data)
         AppState.posts.splice(postIndex, 1, post)
+        if (profilePageIndex != -1) AppState.profilePosts.splice(profilePageIndex, 1, post)
+
     }
     async deletePost(url, postId) {
         const response = await api.delete(url)
@@ -61,9 +64,6 @@ class PostsService {
 
         if (profilePageIndex != -1) AppState.profilePosts.splice(profilePageIndex, 1)
         if (postIndex != -1) AppState.posts.splice(postIndex, 1) //NOTE fix delete in profile page
-
-
-
     }
     async searchPosts(searchTerm) {
         const response = await api.get(`api/posts?query=${searchTerm}`)

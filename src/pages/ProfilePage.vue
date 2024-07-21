@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, watchEffect } from 'vue';
+import { computed, onMounted, watch, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
@@ -14,7 +14,7 @@ import AccountForm from '../components/AccountForm.vue';
 const route = useRoute()
 const profile = computed(() => AppState.profile)
 const profilePosts = computed(() => AppState.profilePosts)
-const posts = computed(() => AppState.posts)
+
 
 watchEffect(() => {
     logger.log(route.params)
@@ -42,7 +42,7 @@ async function getPostByProfileId(profileId) {
     }
 }
 </script>
-
+<!-- 667b2c408382cf0d5652146e = ""667b2c408382cf0d5652146e"" -->
 
 <template>
     <div v-if="profile" class="container">

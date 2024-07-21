@@ -34,7 +34,7 @@ async function deletePost(url, postId) {
 
 <template>
     <div class="col-12 text-center d-flex justify-content-left align-items-center">
-        <div class="card mb-5 ms-4" style="width: 540px; ">
+        <div class="card mb-5 ms-4 w-75">
             <div class="row g-0">
                 <div class="col-md-4">
                     <img :src="postProp.imgUrl" class="img-fluid rounded-start h-100" :alt="postProp.body">

@@ -12,6 +12,7 @@ class ProfilesService {
         logger.log(response.data)
         const profile = new Profile(response.data)
         AppState.profile = profile
+        AppState.profileId = profileId
     }
 }
 
