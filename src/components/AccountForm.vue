@@ -18,6 +18,7 @@ const editableAccountData = ref({
 async function updateAccount() {
     try {
         await accountService.updateAccount(editableAccountData.value)
+        Pop.success('Successfully Updated Account Details')
     } catch (error) {
         Pop.error(error)
     }
@@ -29,7 +30,7 @@ onMounted(() => { editableAccountData.value = { ...AppState.account } })
 
 
 <template>
-    <div v-if="AppState.profileId = AppState.account?.id">
+    <div>
 
         <form @submit.prevent="updateAccount()">
             <div class="mb-3">

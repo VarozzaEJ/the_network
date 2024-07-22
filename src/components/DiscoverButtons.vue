@@ -24,7 +24,7 @@ async function changePage(pageNumber) {
         await postsService.changePage(pageNumber)
     }
     catch (error) {
-        Pop.error(error);
+        Pop.error('You are on the last page');
     }
 }
 
@@ -33,21 +33,21 @@ async function profileChangePage(url) {
         await postsService.profileChangePage(url)
     }
     catch (error) {
-        Pop.error(error);
+        Pop.error('You are on the last page');
     }
 }
 </script>
 
 
 <template>
-    <section v-if="!profile" class="row justify-content-between my-2">
+    <section v-if="!profile" class="row justify-content-center my-2">
         <button :disabled="currentPage == 1" class="col-3 btn btn-primary" @click="changePage(currentPage - 1)"><i
                 class="mdi mdi-arrow-left"></i> Previous</button>
         <div class="col-3 text-center fw-bold">{{ currentPage }} of {{ totalPages }}</div>
         <button :disabled="currentPage == totalPages" @click="changePage(currentPage + 1)"
             class="col-3 btn btn-primary">Next<i class="mdi mdi-arrow-right"></i></button>
     </section>
-    <section v-else class="row ">
+    <section v-else class="row justify-content-center">
         <button :disabled="currentPage == 1" class="col-3 btn btn-primary"
             @click="profileChangePage(`api/profiles/${profile.id}/posts?page=${currentPage - 1}`)"><i
                 class="mdi mdi-arrow-left"></i> Previous</button>

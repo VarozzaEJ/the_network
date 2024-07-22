@@ -14,6 +14,8 @@ import AccountForm from '../components/AccountForm.vue';
 const route = useRoute()
 const profile = computed(() => AppState.profile)
 const profilePosts = computed(() => AppState.profilePosts)
+const profileId = computed(() => AppState.profileId)
+const account = computed(() => AppState.account)
 
 
 watchEffect(() => {
@@ -47,15 +49,17 @@ async function getPostByProfileId(profileId) {
 <template>
     <div v-if="profile" class="container">
         <div>
-            <AccountForm />
+
         </div>
         <div class="row row-color mt-3" :style="`background-image: url(${profile.coverImg})`">
-            <div class="col-6 px-0 d-flex">
+            <div class="col-md-6 px-0 d-flex">
                 <img :src="profile.picture" :alt="profile.name" class="img-fluid">
-                <i v-if="profile.graduated" class="fs-1 mdi mdi-account-school text-shadow"></i>
+
             </div>
-            <div class="col-6 text-center my-auto">
-                <h1 class="display-1 fw-bold text-light" style="text-shadow: 0 3px 1px black;">{{ profile.name }} </h1>
+            <div class="col-md-6 text-center my-auto d-flex align-items-center">
+                <i v-if="profile.graduated" class="fs-1 mdi mdi-account-school text-shadow"></i>
+                <h1 class="display-1 fw-bold text-light" style="text-shadow: 0 3px 1px black;">{{ profile.name }}
+                </h1>
                 <div class="d-flex justify-content-center">
                     <p v-if="profile.linkedin" class="fs-1 text-shadow"><a :href="profile.linkedin"><i
                                 class="mdi mdi-linkedin"></i></a></p>
@@ -65,18 +69,24 @@ async function getPostByProfileId(profileId) {
             </div>
         </div>
         <div class="row d-flex justify-content-center">
-            <div class="col-8 mt-1 ms-1 bg-success">
+            <div class="col-md-8 mt-1 ms-1 bg-success">
                 <p class="text-center fs-4"><i class="mdi mdi-school me-2"></i>{{ profile.class }}</p>
-                <p class="text-center fs-5">{{ profile.bio }}</p>
+                <p v-if="profile.bio" class="text-center fs-5">{{ profile.bio }}</p>
             </div>
         </div>
         <div v-for="post in profilePosts" :key="post.id" class="col-12 mt-3">
             <PostCard :postProp="post" />
         </div>
-        <DiscoverButtons />
+
+        <div class="col-12">
+
+            <DiscoverButtons />
+
+        </div>
+
     </div>
 </template>
-<!-- TODO add route to profile page for logged in user without having to click on the image on a post card -->
+
 
 
 <style lang="scss" scoped>

@@ -30,8 +30,14 @@ async function getMonetizedPictures() {
   <main>
     <div class="d-flex">
       <router-view />
-      <div class="d-flex flex-column">
-        <MonetizedPicture v-for=" ad in ads" :key="ad.id" :ad-prop="ad" />
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col d-flex justify-content-center flex-column">
+
+            <MonetizedPicture v-for=" ad in ads" :key="ad.id" :ad-prop="ad" />
+          </div>
+
+        </div>
       </div>
     </div>
     <PostModal />

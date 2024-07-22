@@ -33,8 +33,8 @@ async function deletePost(url, postId) {
 
 
 <template>
-    <div class="col-12 text-center d-flex justify-content-left align-items-center">
-        <div class="card mb-5 ms-4 w-75">
+    <div class="col-12 text-center d-flex justify-content-center align-items-center">
+        <div class="card mb-5 mt-4 mx-4 w-75 ">
             <div class="row g-0">
                 <div class="col-md-4">
                     <img :src="postProp.imgUrl" class="img-fluid rounded-start h-100" :alt="postProp.body">
@@ -52,14 +52,16 @@ async function deletePost(url, postId) {
                             <div class="d-flex align-items-center justify-content-end mb-4 ">
                                 <p class="card-text fs-4 fw-bold me-2">{{ postProp.creator.name }}</p>
                                 <RouterLink :to="{ name: 'Profile', params: { profileId: postProp.creatorId } }">
-                                    <img class="img-fluid creator-img" :src="postProp.creator.picture"
+                                    <img :title="`Navigate to ${postProp.creator.name}'s Profile Page`"
+                                        class="img-fluid creator-img" :src="postProp.creator.picture"
                                         :alt="postProp.creator.name">
                                 </RouterLink>
                                 <!-- TODO like button is here -->
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5 v-if="postProp.creatorId == AppState.account?.id">
-                                    <button v-on:click="deletePost(`api/posts/${postProp.id}`, postProp.id)"
+                                    <button title="Delete Your Post"
+                                        v-on:click="deletePost(`api/posts/${postProp.id}`, postProp.id)"
                                         class="btn btn-outline-danger"><i class=" text-start fs-2 mdi mdi-delete"></i>
                                     </button>
                                 </h5>

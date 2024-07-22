@@ -8,11 +8,13 @@ import { api } from "./AxiosService.js"
 
 class PostsService {
     async getAllPosts() {
+        AppState.posts = null
         const response = await api.get('api/posts')
         logger.log(response.data)
         const posts = response.data.posts.map(postPOJO => new Post(postPOJO))
         AppState.posts = posts
         AppState.profile = null
+        AppState.totalPages = response.data.totalPages
     }
     async getPostsByProfileId(profileId) {
         AppState.profilePosts = []
@@ -20,6 +22,7 @@ class PostsService {
         logger.log('THESE ARE THE SPECIFIC POSTS 🧍‍♂️', response.data)
         const posts = response.data.posts.map(postPOJO => new Post(postPOJO))
         AppState.profilePosts = posts
+        AppState.totalPages = response.data.totalPages
     }
     async changePage(pageNumber) {
         const response = await api.get(`api/posts?page=${pageNumber}`)
@@ -28,7 +31,7 @@ class PostsService {
         const posts = response.data.posts.map(postPOJO => new Post(postPOJO))
         AppState.posts = posts
         AppState.currentPage = response.data.page
-        AppState.totalPages = response.data.pages
+        AppState.totalPages = response.data.totalPages
     }
     async profileChangePage(url) {
         const response = await api.get(`${url}`)
@@ -36,7 +39,7 @@ class PostsService {
         const posts = response.data.posts.map(postPOJO => new Post(postPOJO))
         AppState.profilePosts = posts
         AppState.currentPage = response.data.page
-        AppState.totalPages = response.data.pages
+        AppState.totalPages = response.data.totalPages
     }
     async createPost(editablePostData) {
         const response = await api.post('api/posts', editablePostData)
@@ -66,6 +69,7 @@ class PostsService {
         if (postIndex != -1) AppState.posts.splice(postIndex, 1) //NOTE fix delete in profile page
     }
     async searchPosts(searchTerm) {
+        AppState.posts = null
         const response = await api.get(`api/posts?query=${searchTerm}`)
         logger.log(response)
         const searchedPosts = response.data.posts.map(postPOJO => new Post(postPOJO))

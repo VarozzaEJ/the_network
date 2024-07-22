@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import Pop from '../utils/Pop.js';
 import { postsService } from '../services/PostsService.js';
 import { logger } from '../utils/Logger.js';
+import { Modal } from 'bootstrap';
 
 
 const editablePostData = ref({
@@ -16,6 +17,11 @@ async function createPost() {
     try {
         // logger.log('POST CREATION DATA', editablePostData)
         await postsService.createPost(editablePostData.value)
+        editablePostData.value = {
+            body: '',
+            imgUrl: ''
+        }
+        Modal.getOrCreateInstance('#exampleModal').hide()
     }
     catch (error) {
         Pop.error(error);

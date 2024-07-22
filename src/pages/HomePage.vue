@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from "../AppState.js";
+import PostCard from "../components/PostCard.vue";
 import { postsService } from "../services/PostsService.js";
 import Pop from "../utils/Pop";
 import { computed, onMounted } from "vue";
@@ -24,9 +25,9 @@ async function getAllPosts() {
 </script>
 
 <template>
-  <div class="container-fluid ">
+  <div class="container ">
     <div class="row">
-      <div v-for="post in posts" :key="post.id" class="col-12 ">
+      <div v-for="post in posts" :key="post.id" class="col-11 ">
         <PostCard :postProp='post' />
       </div>
     </div>

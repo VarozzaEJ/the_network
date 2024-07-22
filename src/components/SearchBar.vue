@@ -28,7 +28,8 @@ async function searchPosts() {
 
             <input v-model="searchTerm" type="text" class="form-control" />
 
-            <button class="btn btn-info px-3"><i class="mdi mdi-magnify"></i></button>
+            <button :title="`Search For ${searchTerm}`" class="btn btn-info px-3"><i
+                    class="mdi mdi-magnify"></i></button>
         </div>
     </form>
 </template>

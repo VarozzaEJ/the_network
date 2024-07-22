@@ -16,13 +16,24 @@ const props = defineProps({ adProp: { type: MonetizedPicture, required: true } }
 
 
 <template>
-    <img :src="adProp.square" :alt="adProp.title" class="img-fluid ad-card mb-3 ms-5 ">
+    <div class="col d-flex flex-column justify-content-center">
+        <div class="d-flex flex-column justify-content-center">
+            <a class="" :href="adProp.linkUrl" :title="adProp.title">
+                <img :src="adProp.tall" :alt="adProp.title" class="img-fluid ad-card mx-3 my-3 ">
+            </a>
+        </div>
+    </div>
 </template>
 
 
 <style lang="scss" scoped>
 .ad-card {
-    height: 25vh;
-    width: 25vh;
+    height: 50vh;
+    width: 30vh;
+}
+
+a {
+    height: 50vh;
+    width: 30vh;
 }
 </style>

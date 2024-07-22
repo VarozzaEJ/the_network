@@ -23,8 +23,8 @@ function toggleTheme() {
 <template>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <p class="fs-1"><i class="mdi mdi-transit-connection mdi-spin"></i>The Network</p>
+      <div class="d-flex flex-column align-items-center ">
+        <p title="Home Page" class="fs-1 mb-0"><i class="mdi mdi-transit-connection mdi-spin"></i>The Network</p>
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
