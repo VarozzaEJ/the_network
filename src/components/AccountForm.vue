@@ -12,6 +12,8 @@ const editableAccountData = ref({
     bio: '',
     graduated: false,
     class: '',
+    github: '',
+    resume: '',
 })
 
 
@@ -52,6 +54,14 @@ onMounted(() => { editableAccountData.value = { ...AppState.account } })
                 <label for="linkedin" class="form-label">Account Linkedin</label>
                 <input v-model="editableAccountData.linkedin" type="url" class="form-control" id="linkedin"
                     maxlength="500">
+            </div>
+            <div class="mb-3">
+                <label for="resume" class="form-label">Account Resume</label>
+                <input v-model="editableAccountData.resume" type="url" class="form-control" id="resume" maxlength="500">
+            </div>
+            <div class="mb-3">
+                <label for="github" class="form-label">Account GitHub</label>
+                <input v-model="editableAccountData.github" type="url" class="form-control" id="github" maxlength="500">
             </div>
 
             <div class="mb-3">
