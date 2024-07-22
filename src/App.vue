@@ -30,7 +30,7 @@ async function getMonetizedPictures() {
   <main>
     <div class="d-flex">
       <router-view />
-      <div class="container">
+      <div class="container w-50">
         <div class="row justify-content-center">
           <div class="col d-flex justify-content-center flex-column">
 

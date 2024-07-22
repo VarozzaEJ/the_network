@@ -12,6 +12,7 @@ const props = defineProps({ postProp: { type: Post, required: true } })
 async function likePost(url, postId) {
     try {
         await postsService.likePost(url, postId)
+        Pop.success('Liked Post')
     }
     catch (error) {
         Pop.error(error);
