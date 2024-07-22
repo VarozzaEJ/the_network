@@ -63,11 +63,13 @@ async function getPostByProfileId(profileId) {
                     <h1 class=" display-1 fw-bold text-light" style="text-shadow: 0 3px 1px black;">{{ profile.name }}
                     </h1>
                 </div>
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center flex-column">
                     <p v-if="profile.linkedin" class="fs-1 text-shadow"><a :href="profile.linkedin"><i
                                 class="mdi mdi-linkedin"></i></a></p>
                     <p v-if="profile.resume" class="fs-1 text-shadow"><a :href="profile.resume"><i
                                 class="mdi mdi-file-account"></i></a></p>
+                    <p v-if="profile.github" class="fs-1 text-shadow"><a :href="profile.github"><i
+                                class="mdi mdi-github"></i></a></p>
                 </div>
             </div>
         </div>

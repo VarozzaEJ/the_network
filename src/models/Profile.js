@@ -8,6 +8,7 @@ export class Profile {
         this.coverImg = data.coverImg
         this.linkedin = data.linkedin
         this.resume = data.resume
+        this.github = data.github
         this.graduated = data.graduated || false
         this.class = data.class
     }
