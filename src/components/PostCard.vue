@@ -157,5 +157,6 @@ async function deletePost(url, postId) {
 .post-img {
     object-fit: center;
     object-position: center;
+    aspect-ratio: 1/1;
 }
 </style>
